@@ -1,6 +1,7 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<numeric>
 using namespace std;
 
 bool compare(const int& a,const int& b)
@@ -10,7 +11,7 @@ bool compare(const int& a,const int& b)
 
 int main()
 {
-	int n,x;
+	int n,x,i;
 	cin>>n;
 	vector<int> ar;
 	
@@ -24,22 +25,23 @@ int main()
 
 	cin>>x;
 
-	std::sort(ar.begin(),ar.end(),compare);
-	if(ar.size() == 0)
+	if(ar.size() == 0 || x == 0)
 	{
 		cout<<"0"<<endl;
-		return;
+		return 0;
 	}
+	std::sort(ar.begin(),ar.end(),compare);
 
-	long long int sum = std::accumulate(ar.begin(),ar.end());
-
-	if( x >= ar.size() )
+	long long int sum = 0;
+	i = 0;
+	while( x >= 1 && i<ar.size() )
 	{
-		cout<<sum<<endl
-		return;
+		sum += ar[i];
+		x--;
+		i++;
 	}
-	
-	int left = x;
-	int right = ar.size() - x;
+
+	cout<<sum<<endl;
+	return 0;
 
 }
